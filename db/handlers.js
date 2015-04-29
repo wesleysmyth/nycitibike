@@ -8,6 +8,7 @@
    * @return {object} handlers - all handlers functions from this module
    */
   module.exports = function (Station) {
+    var Promise = require('bluebird');
     
     // db handlers to export
     var handlers = {
@@ -43,8 +44,6 @@
             latitude: station.latitude,
             longitude: station.longitude,
             totalDocks: station.totalDocks,
-            availableDocks: station.availableDocks,
-            availableBikes: station.availableBikes,
             postalCode: station.postalCode,
             borough: station.borough,
             hour: hoursSchema
@@ -79,8 +78,8 @@
       var hour = time.slice(-2) === 'PM' ? parseInt(splitTime[0].slice(-2), 10) + 12 : parseInt(splitTime[0].slice(-2), 10);
       var minute = parseInt(splitTime[1] / 5, 10) * 5;
 
-      // minute library maps every fifth minute to an index in the minutes schema array
-      var minuteLibrary = { 0:0, 5:1, 10:2, 15:3, 20:4, 25:5, 30:6, 35:7, 40:8, 45:9, 50:10, 55:11 };
+      // minute library maps each half hour to an index in the minutes schema array
+      var minuteLibrary = { 0:0, 1:30 };
 
       // mongoose syntax to point to the the minute object within a station
       var minuteString = 'hour.' + hour + '.minutes.' + minuteLibrary[minute];
@@ -100,8 +99,8 @@
             
           // grab the current minute object from the station and update the averages and count
           var currentMinute = dbStation.hour[hour].minutes[minuteLibrary[minute]]
-          currentMinute.avgBikes = ((currentMinute.avgBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
-          currentMinute.avgDocks = ((currentMinute.avgDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
+          currentMinute.avgAvailableBikes = ((currentMinute.avgAvailableBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
+          currentMinute.avgAvailableDocks = ((currentMinute.avgAvailableDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
           currentMinute.count++;
 
           // set the update object equal to the currentMinute object
@@ -153,13 +152,13 @@
     function generateHoursSchema () {
 
       var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-      var fiveMinutes = [0,5,10,15,20,25,30,35,40,45,50,55];
+      var thirtyMinutes = [0,30];
       var hoursSchema = [];
 
       for (var i = 0; i < hours.length; i++) {
         var hour = { value: hours[i], minutes: []};
-        for (var j = 0; j < fiveMinutes.length; j++) {
-          hour.minutes.push({ value: fiveMinutes[j], avgBikes: 0, avgDocks: 0, count: 0 });
+        for (var j = 0; j < thirtyMinutes.length; j++) {
+          hour.minutes.push({ value: thirtyMinutes[j], avgBikes: 0, avgDocks: 0, count: 0 });
         }
         hoursSchema.push(hour);
       }

@@ -14,8 +14,8 @@
     // define minute schema
     schemas.minuteSchema = new Schema({
       value: Number,
-      avgBikes: Number,
-      avgDocks: Number,
+      avgAvailableBikes: Number,
+      avgAvailableDocks: Number,
       count: Number
     });
 
@@ -31,8 +31,6 @@
       latitude: Number,
       longitude: Number,
       totalDocks: Number,
-      availableDocks: Number,
-      availableBikes: Number,
       postalCode: Number,
       borough: String,
       hour: [schemas.hourSchema]

@@ -5,7 +5,14 @@
   var db = require('../db/config.js');
   var loadData = require('./services/loadCitibikeData.js')(db.Station);
   var updateData = require('./services/updateCitibikeData.js')(db.Station);
+  var router = require('./router.js')(db.Station, express);
+  var cors = require('cors');
   var app = express();
+
+  app.use(cors());
+
+  // route to retrieve citibike data
+  app.use('/citibike', router);
 
   // use client directory to serve static files
   app.use(express.static(__dirname + '/../client'));

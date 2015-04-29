@@ -116,7 +116,7 @@
      */
     function getStationLocation(station) {
       request
-      .get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + station.latitude + ',' + station.longitude + '&key=AIzaSyBnXI2goL48kJr9XhsQlrDKnqWYNJOJ1lQ', function (error, response, body) {
+      .get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + station.latitude + ',' + station.longitude + '&key=AIzaSyDy8RnGMABHlpaGjS2fxgrcX-ASgtibJBU', function (error, response, body) {
         if (!error && response.statusCode === 200) {
 
           // parse the results from the latitude and longitude given

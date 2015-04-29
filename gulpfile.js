@@ -7,7 +7,7 @@ var bs = require('browser-sync');
 var paths = {
   // all client app js files, not including 3rd party js files
   scripts: ['client/app/**/*.js'],
-  html: ['client/**/*.html', 'index.html'],
+  html: ['client/app/**/*.html', 'index.html'],
   styles: ['client/styles/*']
 };
 
