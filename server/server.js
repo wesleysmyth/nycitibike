@@ -21,12 +21,13 @@
   db.mongooseConnect();
 
   // load and store all initial Citibike station data in db
-  loadData();
+  // loadData();
 
   // set interval for continuous data updates every five minutes
   setInterval(function () {
     updateData();
-  }, 300000);
+    console.log('30 minute data has updated');
+  }, 1800000);
 
 
   module.exports = app;

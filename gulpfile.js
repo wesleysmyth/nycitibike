@@ -23,7 +23,7 @@ gulp.task('start', ['serve'],  function () {
 
 // start our node server using nodemon
 gulp.task('serve', function() {
-  nodemon({script: 'index.js', ignore: ['node_modules/**/*.js', 'server/*']});
+  nodemon({script: 'index.js', ignore: ['node_modules/**/*.js', 'server/*', '*']});
 });
 
 // watch all stylus files for changes and compile to css

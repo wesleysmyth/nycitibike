@@ -33,7 +33,7 @@
       totalDocks: Number,
       postalCode: Number,
       borough: String,
-      hour: [schemas.hourSchema]
+      hours: [schemas.hourSchema]
     });
 
     return schemas;

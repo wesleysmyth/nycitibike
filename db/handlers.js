@@ -46,7 +46,7 @@
             totalDocks: station.totalDocks,
             postalCode: station.postalCode,
             borough: station.borough,
-            hour: hoursSchema
+            hours: hoursSchema
           });
 
           // save the station to the db
@@ -75,11 +75,16 @@
      */
     function updateData (allStations, time) {
       var splitTime = time.split(':');
-      var hour = time.slice(-2) === 'PM' ? parseInt(splitTime[0].slice(-2), 10) + 12 : parseInt(splitTime[0].slice(-2), 10);
-      var minute = parseInt(splitTime[1] / 5, 10) * 5;
+      console.log(time.slice(-2));
+      var hour = time.slice(-2) === 'PM' && splitTime[0].slice(-2) !== '12'
+        ? parseInt(splitTime[0].slice(-2), 10) + 12 
+        : parseInt(splitTime[0].slice(-2), 10);
+      var minute = parseInt(splitTime[1] / 30, 10) * 30;
+      console.log('hour', hour);
+      console.log('minute', minute);
 
       // minute library maps each half hour to an index in the minutes schema array
-      var minuteLibrary = { 0:0, 1:30 };
+      var minuteLibrary = { 0:0, 30:1 };
 
       // mongoose syntax to point to the the minute object within a station
       var minuteString = 'hour.' + hour + '.minutes.' + minuteLibrary[minute];
@@ -98,7 +103,7 @@
           } 
             
           // grab the current minute object from the station and update the averages and count
-          var currentMinute = dbStation.hour[hour].minutes[minuteLibrary[minute]]
+          var currentMinute = dbStation.hours[hour].minutes[minuteLibrary[minute]];
           currentMinute.avgAvailableBikes = ((currentMinute.avgAvailableBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
           currentMinute.avgAvailableDocks = ((currentMinute.avgAvailableDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
           currentMinute.count++;
@@ -158,7 +163,7 @@
       for (var i = 0; i < hours.length; i++) {
         var hour = { value: hours[i], minutes: []};
         for (var j = 0; j < thirtyMinutes.length; j++) {
-          hour.minutes.push({ value: thirtyMinutes[j], avgBikes: 0, avgDocks: 0, count: 0 });
+          hour.minutes.push({ value: thirtyMinutes[j], avgAvailableBikes: 0, avgAvailableDocks: 0, count: 0 });
         }
         hoursSchema.push(hour);
       }

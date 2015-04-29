@@ -1,6 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('core.data', []);
+  angular.module('core.d3', []);
 
 })();

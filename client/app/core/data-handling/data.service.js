@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.data')
+    .module('core.data')
     .factory('dataservice', dataservice);
   
   /*FIXME: makesure ngInject is working during minification*/
@@ -30,7 +30,7 @@
       .success(function (stations){
         console.log('here are all the stations', stations);
         console.timeEnd("answer time");
-        window.stations = stations;
+        return stations;
       })
       .error(function (err){
         console.log('error retrieving stations');
