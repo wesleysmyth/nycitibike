@@ -1,2 +1,84 @@
-h1
-  color orange
+  
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+html {
+  font: 14px 'Open Sans';
+  color: #003270;
+  padding: 20px 30px;
+}
+
+svg {
+  font: 14px 'Open Sans';
+  color: #003270;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill: #000;
+}
+
+.axis .tick line {
+  stroke: rgba(0, 0, 0, 0.1);
+}
+
+.area {
+  stroke-width: 1;
+}
+
+.area.outer,
+.legend .outer {
+  fill: #0079BF;
+  stroke: #0079BF;
+}
+
+.area.inner,
+.legend .inner {
+  fill: #00BCF1;
+  stroke: #00BCF1;
+}
+
+.median-line,
+.legend .median-line {
+  fill: none;
+  stroke: #003270;
+  stroke-width: 3;
+}
+
+.legend .legend-bg {
+  fill: rgba(0, 0, 0, 0.5);
+  stroke: rgba(0, 0, 0, 0.5);
+}
+
+// .marker.client .marker-bg,
+// .marker.client path {
+//   fill: rgba(255, 127, 0, 0.8);
+//   stroke: rgba(255, 127, 0, 0.8);
+//   stroke-width: 3;
+// }
+
+// .marker.server .marker-bg,
+// .marker.server path {
+//   fill: #003270;
+//   stroke: rgba(0, 153, 51, 0.8);
+//   stroke-width: 3;
+// }
+
+.marker path {
+  fill: none;
+}
+
+.legend text,
+.marker text {
+  fill: #fff;
+  font-weight: bold;
+}
+
+.marker text {
+  text-anchor: middle;
+}

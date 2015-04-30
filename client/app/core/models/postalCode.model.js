@@ -31,7 +31,7 @@
         for (var i = 0; i < 48; i++) {
           var hour = Math.floor(i / 2);
           var minutes = i % 2 === 0 ? '00' : '30';
-          postalCodeData[key][i] = { avgAvailableBikes: 0, time: hour + ':' + minutes };
+          postalCodeData[key][i] = { avgAvailableBikes: 0, time: hour + ':' + minutes, maxBikes: 0, minBikes: 0 };
         }
 
         var codeStations = stations.filter(function (station) {
@@ -43,6 +43,8 @@
             return hour.minutes.forEach(function (minute) {
               var minuteIndex = minute.value === 0 ? 0 : 1;
               postalCodeData[key][(hour.value * 2) + minuteIndex].avgAvailableBikes += minute.avgAvailableBikes;
+              postalCodeData[key][(hour.value * 2) + minuteIndex].maxBikes += minute.maxBikes;
+              postalCodeData[key][(hour.value * 2) + minuteIndex].minBikes += minute.minBikes;
             })
           });
         });

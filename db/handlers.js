@@ -78,6 +78,8 @@
       console.log(time.slice(-2));
       var hour = time.slice(-2) === 'PM' && splitTime[0].slice(-2) !== '12'
         ? parseInt(splitTime[0].slice(-2), 10) + 12 
+        : time.slice(-2) === 'AM' && splitTime[0].slice(-2) === '12' 
+        ? 0 
         : parseInt(splitTime[0].slice(-2), 10);
       var minute = parseInt(splitTime[1] / 30, 10) * 30;
       console.log('hour', hour);
@@ -106,6 +108,8 @@
           var currentMinute = dbStation.hours[hour].minutes[minuteLibrary[minute]];
           currentMinute.avgAvailableBikes = ((currentMinute.avgAvailableBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
           currentMinute.avgAvailableDocks = ((currentMinute.avgAvailableDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
+          currentMinute.maxBikes = availableBikes > currentMinute.maxBikes ? availableBikes : currentMinute.maxBikes;
+          currentMinute.minBikes = availableBikes < currentMinute.minBikes ? availableBikes : currentMinute.minBikes;
           currentMinute.count++;
 
           // set the update object equal to the currentMinute object
@@ -163,7 +167,7 @@
       for (var i = 0; i < hours.length; i++) {
         var hour = { value: hours[i], minutes: []};
         for (var j = 0; j < thirtyMinutes.length; j++) {
-          hour.minutes.push({ value: thirtyMinutes[j], avgAvailableBikes: 0, avgAvailableDocks: 0, count: 0 });
+          hour.minutes.push({ value: thirtyMinutes[j], avgAvailableBikes: 0, avgAvailableDocks: 0, count: 0, maxBikes: 0, minBikes: 0 });
         }
         hoursSchema.push(hour);
       }

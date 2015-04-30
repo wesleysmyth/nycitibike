@@ -16,6 +16,8 @@
       value: Number,
       avgAvailableBikes: Number,
       avgAvailableDocks: Number,
+      maxBikes: Number,
+      minBikes: Number,
       count: Number
     });
 

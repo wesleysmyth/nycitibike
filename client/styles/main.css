@@ -1,3 +1,56 @@
-h1 {
-  color: #ffa500;
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,700");
+html {
+  font: 14px 'Open Sans';
+  color: #003270;
+  padding: 20px 30px;
+}
+svg {
+  font: 14px 'Open Sans';
+  color: #003270;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  fill: #000;
+}
+.axis .tick line {
+  stroke: rgba(0,0,0,0.1);
+}
+.area {
+  stroke-width: 1;
+}
+.area.outer,
+.legend .outer {
+  fill: #0079bf;
+  stroke: #0079bf;
+}
+.area.inner,
+.legend .inner {
+  fill: #00bcf1;
+  stroke: #00bcf1;
+}
+.median-line,
+.legend .median-line {
+  fill: none;
+  stroke: #003270;
+  stroke-width: 3;
+}
+.legend .legend-bg {
+  fill: rgba(0,0,0,0.5);
+  stroke: rgba(0,0,0,0.5);
+}
+.marker path {
+  fill: none;
+}
+.legend text,
+.marker text {
+  fill: #fff;
+  font-weight: bold;
+}
+.marker text {
+  text-anchor: middle;
 }
