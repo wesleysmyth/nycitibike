@@ -42,7 +42,7 @@
       // // if none of the above states are matched, use this as the fallback
       $urlRouterProvider.otherwise('/');
 
-      // $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
     });
 
 })();

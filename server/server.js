@@ -7,6 +7,7 @@
   var updateData = require('./services/updateCitibikeData.js')(db.Station);
   var router = require('./router.js')(db.Station, express);
   var cors = require('cors');
+  var path = require('path');
   var app = express();
 
   app.use(cors());
@@ -16,6 +17,11 @@
 
   // use client directory to serve static files
   app.use(express.static(__dirname + '/../client'));
+	
+  // send requests to index.html to account for html5mode
+  app.use('/*', function(req, res){
+    res.sendfile(path.resolve(__dirname + '/../client/index.html'));
+  });
 
   // Connect to MongoDB through mongoose connection
   db.mongooseConnect();
