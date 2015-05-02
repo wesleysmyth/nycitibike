@@ -1,5 +1,5 @@
   
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700')
 
 font-size = 14px
 font-family = 'Open Sans'
@@ -25,23 +25,19 @@ html, svg
 
 
 .axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+.axis line
+  fill none
+  stroke #000
+  shape-rendering crispEdges
 
-.axis text {
-  fill: #000;
-}
+.axis text
+  fill #000
 
-.axis .tick line {
-  stroke: rgba(0, 0, 0, 0.1);
-}
+.axis .tick line
+  stroke rgba(0, 0, 0, 0.1)
 
-.area {
-  stroke-width: 1;
-}
+.area
+  stroke-width 1
 
 .legend .outer
   fill light-blue
@@ -53,30 +49,25 @@ html, svg
 
 
 .median-line,
-.legend .median-line {
-  fill: none;
-  stroke: #003270;
-  stroke-width: 3;
-}
+.legend .median-line
+  fill none
+  stroke #003270
+  stroke-width 3
 
-.legend .legend-bg {
-  fill: rgba(0, 0, 0, 0.5);
-  stroke: rgba(0, 0, 0, 0.5);
-}
+.legend .legend-bg
+  fill rgba(0, 0, 0, 0.5)
+  stroke rgba(0, 0, 0, 0.5)
 
-.marker path {
-  fill: none;
-}
+.marker path
+  fill none
 
 .legend text,
-.marker text {
-  fill: #fff;
-  font-weight: bold;
-}
+.marker text
+  fill #fff
+  font-weight bold
 
-.marker text {
-  text-anchor: middle;
-}
+.marker text
+  text-anchor middle
 
 .buttons 
   text-align center
@@ -94,21 +85,19 @@ html, svg
   stroke medium-blue
 
 /* button styles */
-.animate {
-  transition: all 0.1s;
-  -webkit-transition: all 0.1s;
-}
+.animate
+  transition all 0.1s
+  -webkit-transition all 0.1s
 
-.action-button {
-  cursor: pointer;
-  position: relative;
-  padding: 10px 40px;
-  margin: 0px 10px 10px 0px;
-  border-radius: 10px;
-  font-size: 25px;
-  color: #FFF;
-  text-decoration: none;  
-}
+.action-button
+  cursor pointer
+  position relative
+  padding 10px 40px
+  margin 0px 10px 10px 0px
+  border-radius 10px
+  font-size 25px
+  color #FFF
+  text-decoration none  
 
 .zip 
   ul
@@ -119,23 +108,21 @@ html, svg
     padding 0
     display inline-block
 
-.zip-button {
-  cursor: pointer;
-  position: relative;
-  padding: 5px 10px;
-  margin: 0px 10px 10px 0px;
-  border-radius: 10px;
-  font-size: 14px;
-  color: #FFF;
-  text-decoration: none;
-  text-align: center;
-}
+.zip-button
+  cursor pointer
+  position relative
+  padding 5px 10px
+  margin 0px 10px 10px 0px
+  border-radius 10px
+  font-size 14px
+  color #FFF
+  text-decoration none
+  text-align center
 
-.blue {
-  background-color: #3498DB;
-  border-bottom: 5px solid #2980B9;
-  text-shadow: 0px -2px #2980B9;
-}
+.blue
+  background-color #3498DB
+  border-bottom 5px solid #2980B9
+  text-shadow 0px -2px #2980B9
 
 .red
   background-color #E74C3C
@@ -156,11 +143,10 @@ html, svg
   cursor pointer
   font-weight bold
 
-.action-button:active {
-  transform: translate(0px,5px);
-  -webkit-transform: translate(0px,5px);
-  border-bottom: 1px solid;
-}
+.action-button:active
+  transform translate(0px,5px)
+  -webkit-transform translate(0px,5px)
+  border-bottom 1px solid
   
 table
   stripe()
@@ -173,10 +159,10 @@ table
 
 /* Modal styles */
 .fade-in
-  -webkit-animation: fadeIn 0.5s ease-in;
-  -moz-animation: fadeIn 0.5s ease-in;
-  -o-animation: fadeIn 0.5s ease-in;
-  animation: fadeIn 0.5s ease-in;
+  -webkit-animation fadeIn 0.5s ease-in
+  -moz-animation fadeIn 0.5s ease-in
+  -o-animation fadeIn 0.5s ease-in
+  animation fadeIn 0.5s ease-in
 
 .modal
   position absolute
@@ -238,72 +224,65 @@ table
   visibility hidden
   opacity 0
   display none
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition all 0.5s ease-in-out
+  -moz-transition all 0.5s ease-in-out
+  -ms-transition all 0.5s ease-in-out
+  -o-transition all 0.5s ease-in-out
+  transition all 0.5s ease-in-out
   
 .center 
   text-align center
 
 
 /* loading styles */
-.loading {
-  -webkit-animation: clockwise 1.5s linear infinite;
-  -moz-animation: clockwise 1.5s linear infinite;
-  -o-animation: clockwise 1.5s linear infinite;
-  animation: clockwise 1.5s linear infinite;
-  display: block;
-  height: 10em;
-  position: relative;
-  width: 10em;
-}
+.loading
+  -webkit-animation clockwise 1.5s linear infinite
+  -moz-animation clockwise 1.5s linear infinite
+  -o-animation clockwise 1.5s linear infinite
+  animation clockwise 1.5s linear infinite
+  display block
+  height 10em
+  position relative
+  width 10em
 
 .loading,
 .loading:before,
-.loading:after {
-  border: .2em solid transparent;
-  border-radius: 50%;
-  border-top-color: rgba(25,255,255,0.6);
-  margin: auto;
-}
+.loading:after
+  border .2em solid transparent
+  border-radius 50%
+  border-top-color rgba(25,255,255,0.6)
+  margin auto
 
 .loading:before,
-.loading:after {
-  content: '';
-  position: absolute;
-}
+.loading:after
+  content ''
+  position absolute
 
-.loading:before {
-  animation: anticlockwise .9s linear infinite;
-  -webkit-animation: anticlockwise .9s linear infinite;
-  -moz-animation: anticlockwise .9s linear infinite;
-  -o-animation: anticlockwise .9s linear infinite;
-  top: -.6em;
-  right: -.6em;
-  bottom: -.6em;
-  left: -.6em;
-}
+.loading:before
+  animation anticlockwise .9s linear infinite
+  -webkit-animation anticlockwise .9s linear infinite
+  -moz-animation anticlockwise .9s linear infinite
+  -o-animation anticlockwise .9s linear infinite
+  top -.6em
+  right -.6em
+  bottom -.6em
+  left -.6em
 
-.loading:after {
-  animation: anticlockwise .66s linear infinite;
-  -webkit-animation: anticlockwise .66s linear infinite;
-  -moz-animation: anticlockwise .66s linear infinite;
-  -o-animation: anticlockwise .66s linear infinite;
-  top: .3em;
-  right: .3em;
-  bottom: .3em;
-  left: .3em;
-}
+.loading:after
+  animation anticlockwise .66s linear infinite
+  -webkit-animation anticlockwise .66s linear infinite
+  -moz-animation anticlockwise .66s linear infinite
+  -o-animation anticlockwise .66s linear infinite
+  top .3em
+  right .3em
+  bottom .3em
+  left .3em
 
-@keyframes clockwise {
-  0%  { transform: rotate(0deg) }
-  100%{ transform: rotate(360deg) }
-}
+@keyframes clockwise
+  0%  transform rotate(0deg)
+  100% transform rotate(360deg)
 
-@keyframes anticlockwise {
-  0%  { transform: rotate(360deg) }
-  100%{ transform: rotate(0deg) }
-}
+@keyframes anticlockwise
+  0%  transform rotate(360deg)
+  100% transform rotate(0deg)
 
