@@ -5,10 +5,8 @@
     .module('core.data')
     .factory('dataservice', dataservice);
   
-  /*FIXME: makesure ngInject is working during minification*/
-  /* @ngInject */ 
   function dataservice($http) {
-    var hostURL = 'http://localhost:8000';
+    var hostURL = 'http://104.236.132.57:8000';
 
     var service = {
       getCitibikeData: getCitibikeData

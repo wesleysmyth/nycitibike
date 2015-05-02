@@ -14,7 +14,7 @@
 
   // exports mongooseConnect function to connect to mongodb
   module.exports.mongooseConnect = function () {
-    mongoose.connect('mongodb://localhost/citibike');
+    mongoose.connect('mongodb://127.0.0.1:27017/citibike');
   };
 
   // exports Station constructor function
