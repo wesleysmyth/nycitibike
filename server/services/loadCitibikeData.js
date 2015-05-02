@@ -64,6 +64,7 @@
         var bikeStation = {};
 
         bikeStation.id = station.id;
+        bikeStation.stationName = station.stationName;
         bikeStation.latitude = station.latitude;
         bikeStation.longitude = station.longitude;
         bikeStation.totalDocks = station.totalDocks;

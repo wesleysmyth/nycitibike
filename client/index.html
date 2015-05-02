@@ -8,30 +8,33 @@
     <!-- Inject client side dependencies -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-smart-table/dist/smart-table.min.js"></script>
     <script src="lib/jquery/dist/jquery.min.js"></script>
 
     <!-- Inject angular modules -->
-    <script src="app/home/header/header.module.js"></script>
-    <script src="app/home/header/header.directive.js"></script>
-
-    <script src="app/home/home.module.js"></script>
-    <script src="app/home/home.js"></script>
+    
+    <script src="app/core/data-handling/data.module.js"></script>    
+    <script src="app/core/data-handling/data.service.js"></script>
 
     <script src="app/core/models/model.module.js"></script>    
     <script src="app/core/models/station.model.js"></script>
-    <script src="app/core/models/city.model.js"></script>
-    <script src="app/core/models/borough.model.js"></script>
-    <script src="app/core/models/postalCode.model.js"></script>
-
-    <script src="app/core/data-handling/data.module.js"></script>    
-    <script src="app/core/data-handling/data.service.js"></script>
+    <script src="app/core/models/chart.model.js"></script>
 
     <script src="app/core/d3/d3.module.js"></script>    
     <script src="app/core/d3/d3.service.js"></script>
 
     <script src="app/directives/app.directives.js"></script>
+    <script src="app/directives/header.directive.js"></script>
+    <script src="app/directives/table.directive.js"></script>
+    <script src="app/directives/modal.directive.js"></script>
+    <script src="app/directives/charts/cityChart.directive.js"></script>
+    <script src="app/directives/charts/boroughChart.directive.js"></script>
+    <script src="app/directives/charts/postalCodeChart.directive.js"></script>
+    <script src="app/directives/charts/stationChart.directive.js"></script>
 
     <script src="app/core/core.module.js"></script>
+    <script src="app/main.js"></script>
 
     <script src="app/app.js"></script>  
 

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.customHeader', [])
+    .module('customHeader', [])
     .directive('customHeader', customHeader);
 
     /* @ngInject */      
@@ -10,7 +10,7 @@
         
       return {
         restrict: 'EA',
-        templateUrl: 'app/home/header/header.html',
+        templateUrl: 'app/templates/header.html',
         replace: true
       };
 

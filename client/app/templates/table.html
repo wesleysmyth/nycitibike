@@ -1,0 +1,18 @@
+<table st-table="data" st-safe-src="chartData" class="table table-striped" ng-if="showChart">
+  <thead>
+  <tr>
+    <th>Time</th>
+    <th>Average Bikes</th>
+    <th>Max Bikes</th>
+    <th>Min Bikes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="time in chartData">
+    <td>{{time.time}}</td>
+    <td>{{time.avgAvailableBikes}}</td>
+    <td>{{time.maxBikes}}</td>
+    <td>{{time.minBikes}}</td>
+  </tr>
+  </tbody>
+</table>

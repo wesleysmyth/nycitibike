@@ -41,6 +41,7 @@
           // create a new station based on the properties of the current station in the station list
           var newStation = new Station({
             stationId: station.id,
+            stationName: station.stationName,
             latitude: station.latitude,
             longitude: station.longitude,
             totalDocks: station.totalDocks,
@@ -97,19 +98,18 @@
         var availableDocks = station.availableDocks;
         var availableBikes = station.availableBikes;
         var query = { stationId: stationId };
-
         // find the specific station in the db based on stationId
         Station.findOne(query, function (err, dbStation) {
           if (err) {
             return console.error('Error finding station by stationId', err);
-          } 
+          }
             
           // grab the current minute object from the station and update the averages and count
           var currentMinute = dbStation.hours[hour].minutes[minuteLibrary[minute]];
           currentMinute.avgAvailableBikes = ((currentMinute.avgAvailableBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
           currentMinute.avgAvailableDocks = ((currentMinute.avgAvailableDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
           currentMinute.maxBikes = availableBikes > currentMinute.maxBikes ? availableBikes : currentMinute.maxBikes;
-          currentMinute.minBikes = availableBikes < currentMinute.minBikes ? availableBikes : currentMinute.minBikes;
+          currentMinute.minBikes = currentMinute.minBikes === 0 ? availableBikes : availableBikes < currentMinute.minBikes ? availableBikes : currentMinute.minBikes;
           currentMinute.count++;
 
           // set the update object equal to the currentMinute object

@@ -1,16 +1,28 @@
   
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-html {
-  font: 14px 'Open Sans';
-  color: #003270;
-  padding: 20px 30px;
-}
+font-size = 14px
+font-family = 'Open Sans'
+dark-blue = #003270
+medium-blue = #0079BF
+light-blue = #00BCF1
+light-gray = #FAFAFA
 
-svg {
-  font: 14px 'Open Sans';
-  color: #003270;
-}
+/* Stripe function for table rows */
+stripe(even = #fff, odd = #eee)
+   tr
+     background-color odd
+     &.even
+     &:nth-child(even)
+       background-color even
+
+html
+  padding 20px 30px
+
+html, svg
+  font font-size font-family
+  color dark-blue
+
 
 .axis path,
 .axis line {
@@ -31,17 +43,14 @@ svg {
   stroke-width: 1;
 }
 
-.area.outer,
-.legend .outer {
-  fill: #0079BF;
-  stroke: #0079BF;
-}
+.legend .outer
+  fill light-blue
+  stroke light-blue
+  
+.legend .inner 
+  fill medium-blue
+  stroke medium-blue
 
-.area.inner,
-.legend .inner {
-  fill: #00BCF1;
-  stroke: #00BCF1;
-}
 
 .median-line,
 .legend .median-line {
@@ -54,20 +63,6 @@ svg {
   fill: rgba(0, 0, 0, 0.5);
   stroke: rgba(0, 0, 0, 0.5);
 }
-
-// .marker.client .marker-bg,
-// .marker.client path {
-//   fill: rgba(255, 127, 0, 0.8);
-//   stroke: rgba(255, 127, 0, 0.8);
-//   stroke-width: 3;
-// }
-
-// .marker.server .marker-bg,
-// .marker.server path {
-//   fill: #003270;
-//   stroke: rgba(0, 153, 51, 0.8);
-//   stroke-width: 3;
-// }
 
 .marker path {
   fill: none;
@@ -82,3 +77,233 @@ svg {
 .marker text {
   text-anchor: middle;
 }
+
+.buttons 
+  text-align center
+  margin 30px
+  
+  a
+    line-height 3
+  
+.upper
+  fill light-blue
+  stroke light-blue
+  
+.lower
+  fill medium-blue
+  stroke medium-blue
+
+/* button styles */
+.animate {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+.action-button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  border-radius: 10px;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;  
+}
+
+.zip 
+  ul
+    padding 20px 0px 20px 10px
+  li 
+    list-style none
+    margin 15px 0px
+    padding 0
+    display inline-block
+
+.zip-button {
+  cursor: pointer;
+  position: relative;
+  padding: 5px 10px;
+  margin: 0px 10px 10px 0px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #FFF;
+  text-decoration: none;
+  text-align: center;
+}
+
+.blue {
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+}
+
+.red
+  background-color #E74C3C
+  border-bottom 5px solid #BD3E31
+  text-shadow 0px -2px #BD3E31
+
+.cancel 
+  font-size 14px
+  padding 5px 20px
+  margin 0px 10px 10px 0px
+  line-height 3
+  
+.search
+  width 70%
+  margin-right 10px
+
+.pointer:hover
+  cursor pointer
+  font-weight bold
+
+.action-button:active {
+  transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+  border-bottom: 1px solid;
+}
+  
+table
+  stripe()
+  width 100%
+  text-align center
+  padding 20px
+  th
+    background-color medium-blue
+    color light-gray
+
+/* Modal styles */
+.fade-in
+  -webkit-animation: fadeIn 0.5s ease-in;
+  -moz-animation: fadeIn 0.5s ease-in;
+  -o-animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.5s ease-in;
+
+.modal
+  position absolute
+  left 0
+  right 0
+  top 100px
+  margin 0 auto
+  width 50%
+  max-width 630px
+  min-width 220px
+  z-index 2000
+  -webkit-backface-visibility hidden
+  -moz-backface-visibility hidden
+  backface-visibility hidden
+  visibility hidden
+
+.modal-content
+  background #FAFAFA
+  border-radius 4px
+  margin 0 auto
+  padding 10px
+  -webkit-transform scale(0.7)
+  -moz-transform scale(0.7)
+  -ms-transform scale(0.7)
+  transform scale(0.7)
+  -webkit-transition all .3s
+  -moz-transition all .3s
+  transition all .3s
+  padding-bottom 30px
+  
+.modal.active
+  visibility visible
+  
+  .modal-content
+    -webkit-transform scale(1)
+    -moz-transform scale(1)
+    -ms-transform scale(1)
+    transform scale(1)
+
+.modal.active ~ .modal-overlay
+  opacity 1
+  visibility visible
+
+.modal-overlay
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  opacity 0
+  z-index 1000
+  visibility hidden
+  background rgba(0,0,0,0.6)
+  -webkit-transition all .3s
+  -moz-transition all .3s
+  transition all .3s
+
+.hide
+  visibility hidden
+  opacity 0
+  display none
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  
+.center 
+  text-align center
+
+
+/* loading styles */
+.loading {
+  -webkit-animation: clockwise 1.5s linear infinite;
+  -moz-animation: clockwise 1.5s linear infinite;
+  -o-animation: clockwise 1.5s linear infinite;
+  animation: clockwise 1.5s linear infinite;
+  display: block;
+  height: 10em;
+  position: relative;
+  width: 10em;
+}
+
+.loading,
+.loading:before,
+.loading:after {
+  border: .2em solid transparent;
+  border-radius: 50%;
+  border-top-color: rgba(25,255,255,0.6);
+  margin: auto;
+}
+
+.loading:before,
+.loading:after {
+  content: '';
+  position: absolute;
+}
+
+.loading:before {
+  animation: anticlockwise .9s linear infinite;
+  -webkit-animation: anticlockwise .9s linear infinite;
+  -moz-animation: anticlockwise .9s linear infinite;
+  -o-animation: anticlockwise .9s linear infinite;
+  top: -.6em;
+  right: -.6em;
+  bottom: -.6em;
+  left: -.6em;
+}
+
+.loading:after {
+  animation: anticlockwise .66s linear infinite;
+  -webkit-animation: anticlockwise .66s linear infinite;
+  -moz-animation: anticlockwise .66s linear infinite;
+  -o-animation: anticlockwise .66s linear infinite;
+  top: .3em;
+  right: .3em;
+  bottom: .3em;
+  left: .3em;
+}
+
+@keyframes clockwise {
+  0%  { transform: rotate(0deg) }
+  100%{ transform: rotate(360deg) }
+}
+
+@keyframes anticlockwise {
+  0%  { transform: rotate(360deg) }
+  100%{ transform: rotate(0deg) }
+}
+

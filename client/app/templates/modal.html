@@ -1,0 +1,30 @@
+<div class="modal">
+  <section class="zip hide center">
+    <h3>Choose a zip code</h3>
+    <ul>
+      <li ng-repeat="zipCode in vm.zipCodes">
+        <a ng-click="vm.closeModal('zip')" class="zip-button shadow animate blue hide" ui-sref="postalCode({postalCode: {{zipCode}} })">{{zipCode}}</a>
+      </li>
+    </ul>
+    <a ng-click="vm.closeModal('zip')" class="action-button shadow animate red cancel">Cancel</a>
+  </section>
+  <section class="station hide center">
+    <h3>Find a Station</h3>
+      <input ng-model="searchText" class="search">
+      <a ng-click="vm.closeModal('station')" class="action-button shadow animate red cancel">Cancel</a>
+      <table st-table="data" st-safe-src="chartData" class="table table-striped">
+        <thead>
+        <tr>
+          <th>Station Id</th>
+          <th>Station Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="station in vm.stations | filter:searchText">
+          <td class="pointer" ng-click="vm.closeModal('station')" ui-sref="station({stationId: {{station.stationId}} })">{{station.stationId}}</td>
+          <td class="pointer" ng-click="vm.closeModal('station')" ui-sref="station({stationId: {{station.stationId}} })">{{station.stationName}}</td>
+        </tr>
+        </tbody>
+      </table>
+  </section>
+</div>

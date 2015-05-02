@@ -18,11 +18,13 @@
     
     ///////////////////////////////////////////////////////////////
 
-    function getCitibikeData () {   
-      console.time("answer time"); 
+    function getCitibikeData (route) {   
+      console.time("answer time");
+      route = route || '';
+
       return $http({
         method: 'GET',
-        url: hostURL + '/citibike',
+        url: hostURL + '/citibike' + '/' + route,
         headers: {
           'Content-Type': 'application/json'
         }

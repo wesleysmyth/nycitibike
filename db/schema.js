@@ -30,6 +30,7 @@
     // define station Schema
     schemas.stationSchema = new Schema({
       stationId: Number,
+      stationName: String,
       latitude: Number,
       longitude: Number,
       totalDocks: Number,

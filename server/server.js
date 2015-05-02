@@ -23,7 +23,7 @@
   // load and store all initial Citibike station data in db
   // loadData();
 
-  updateData();
+  // updateData();
 
   // set interval for continuous data updates every five minutes
   setInterval(function () {

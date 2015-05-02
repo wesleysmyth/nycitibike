@@ -2,25 +2,26 @@
 
   angular
     .module('core.models')
-    .factory('CityModel', CityModel);
+    .factory('ChartModel', ChartModel);
 
-  function CityModel () {
+  function ChartModel () {
 
-    var cityModel = {
+    var chartModel = {
       constructor: constructor
     };
 
-    return cityModel;
+    return chartModel;
 
     /////////////////////////////////////
 
     function constructor (stations) {
-      var cityData = [];
+
+      var chartData = [];
       
       for (var i = 0; i < 48; i++) {
         var hour = Math.floor(i / 2);
         var minutes = i % 2 === 0 ? '00' : '30';
-        cityData[i] = { avgAvailableBikes: 0, time: hour + ':' + minutes, maxBikes: 0, minBikes: 0 };
+        chartData[i] = { avgAvailableBikes: 0, time: hour + ':' + minutes, maxBikes: 0, minBikes: 0 };
       }
 
       // capture average bikes available at each half hour for the entire city
@@ -28,14 +29,15 @@
         station.hours.forEach(function (hour) {
           hour.minutes.forEach(function (minute) {
             var minuteIndex = minute.value === 0 ? 0 : 1;
-            cityData[(hour.value * 2) + minuteIndex].avgAvailableBikes += minute.avgAvailableBikes;
-            cityData[(hour.value * 2) + minuteIndex].maxBikes += minute.maxBikes;
-            cityData[(hour.value * 2) + minuteIndex].minBikes += minute.minBikes;
+            chartData[(hour.value * 2) + minuteIndex].avgAvailableBikes += minute.avgAvailableBikes;
+            chartData[(hour.value * 2) + minuteIndex].maxBikes += minute.maxBikes;
+            chartData[(hour.value * 2) + minuteIndex].minBikes += minute.minBikes;
           });
         });
       });
 
-      return cityData;
+      return chartData;
+
     }
   }
 
