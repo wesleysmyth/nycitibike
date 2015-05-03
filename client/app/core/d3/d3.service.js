@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('core.d3', [])
-    .factory('d3Service', ['$document', '$q', '$rootScope',
-      function ($document, $q, $rootScope) {
+    .factory('d3Service', ['$document', '$q', '$rootScope', '$location',
+      function ($document, $q, $rootScope, $location) {
         var scriptTag = $document[0].createElement('script'); 
         var body = $document[0].getElementsByTagName('body')[0];
         var defer = $q.defer();
@@ -46,6 +46,7 @@
           // add the d3 instance to d3Services to allow for access in all controllers / directives
           services.ddd = d3;
           vm.showChart = false;
+	  vm.absUrl = $location.absUrl();
 
           var margin = parseInt(attrs.margin, 10) || 20;
           var barHeight = parseInt(attrs.barHeight, 10) || 20;
@@ -89,7 +90,7 @@
                                   (-margin.left)                 + ',' + (chartHeight + margin.bottom));
 
               var axes = svg.append('g')
-                .attr('clip-path', 'url(#axes-clip)');
+		.attr('clip-path', 'url(' + vm.absUrl + '#axes-clip)');
 
               axes.append('g')
                 .attr('class', 'x axis')
@@ -194,28 +195,29 @@
               svg.append('path')
                 .attr('class', 'area upper outer')
                 .attr('d', upperOuterArea)
-                .attr('clip-path', 'url(#rect-clip)');
+		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'area lower outer')
                 .attr('d', lowerOuterArea)
-                .attr('clip-path', 'url(#rect-clip)');
+		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'area upper inner')
                 .attr('d', upperInnerArea)
-                .attr('clip-path', 'url(#rect-clip)');
+		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'area lower inner')
                 .attr('d', lowerInnerArea)
-                .attr('clip-path', 'url(#rect-clip)');
+		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'median-line')
                 .attr('d', medianLine)
-                .attr('clip-path', 'url(#rect-clip)');
-            }
+                .attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
+    
+	    }
 
             function startTransitions (svg, chartWidth, chartHeight, rectClip, x) {
               rectClip.transition()

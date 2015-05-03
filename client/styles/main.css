@@ -58,6 +58,7 @@ svg {
 }
 .buttons a {
   line-height: 3;
+  white-space: nowrap;
 }
 .upper {
   fill: #00bcf1;
