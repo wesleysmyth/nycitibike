@@ -39,9 +39,10 @@
           controller: 'Main as vm'
         })
       
-      // // if none of the above states are matched, use this as the fallback
+      // if none of the above states are matched, use this as the fallback
       $urlRouterProvider.otherwise('/');
 
+      // set html5 mode to true to remove the hash tag from the url (also base is required in index.html)
       $locationProvider.html5Mode(true);
     });
 

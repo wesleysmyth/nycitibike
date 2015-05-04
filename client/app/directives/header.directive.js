@@ -4,8 +4,7 @@
   angular
     .module('customHeader', [])
     .directive('customHeader', customHeader);
-
-    /* @ngInject */      
+   
     function customHeader () {
         
       return {

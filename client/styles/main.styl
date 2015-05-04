@@ -23,7 +23,6 @@ html, svg
   font font-size font-family
   color dark-blue
 
-
 .axis path,
 .axis line
   fill none
@@ -46,7 +45,6 @@ html, svg
 .legend .inner 
   fill medium-blue
   stroke medium-blue
-
 
 .median-line,
 .legend .median-line
@@ -287,6 +285,16 @@ table
     transform: rotate(360deg);
   }
 }
+
+@keyframes anticlockwise {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 @-webkit-keyframes clockwise {
   0% {
     transform: rotate(0deg);
@@ -295,22 +303,7 @@ table
     transform: rotate(360deg);
   }
 }
-@-o-keyframes clockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@-moz-keyframes anticlockwise {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
+
 @-webkit-keyframes anticlockwise {
   0% {
     transform: rotate(360deg);
@@ -319,14 +312,7 @@ table
     transform: rotate(0deg);
   }
 }
-@-o-keyframes anticlockwise {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
+
 @-moz-keyframes clockwise {
   0% {
     transform: rotate(0deg);
@@ -335,30 +321,7 @@ table
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes clockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@-o-keyframes clockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes clockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+
 @-moz-keyframes anticlockwise {
   0% {
     transform: rotate(360deg);
@@ -367,23 +330,17 @@ table
     transform: rotate(0deg);
   }
 }
-@-webkit-keyframes anticlockwise {
+
+@-o-keyframes clockwise {
   0% {
-    transform: rotate(360deg);
-  }
-  100% {
     transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
 @-o-keyframes anticlockwise {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-@keyframes anticlockwise {
   0% {
     transform: rotate(360deg);
   }

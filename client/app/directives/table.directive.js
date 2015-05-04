@@ -4,8 +4,7 @@
   angular
     .module('customTable', [])
     .directive('customTable', customTable);
-
-    /* @ngInject */      
+     
     function customTable () {
         
       return {

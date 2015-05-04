@@ -4,8 +4,7 @@
   angular
     .module('modal', [])
     .directive('modal', modal);
-
-    /* @ngInject */      
+     
     function modal() {
         
       return {

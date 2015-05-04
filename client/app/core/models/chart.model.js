@@ -4,6 +4,11 @@
     .module('core.models')
     .factory('ChartModel', ChartModel);
 
+  /**
+   * ChartModel - factory for chart models
+   * 
+   * @return {object} chartModel - returns the chartModel constructor function
+   */
   function ChartModel () {
 
     var chartModel = {
@@ -14,10 +19,17 @@
 
     /////////////////////////////////////
 
+    /**
+     * constructor - chart model constructor function
+     * 
+     * @param {array} stations - all of the stations to construct the chart 
+     * @return {array} chartData - returns an array of the 
+     */
     function constructor (stations) {
 
       var chartData = [];
-      
+
+      // set up the hour objects for the chartData array
       for (var i = 0; i < 48; i++) {
         var hour = Math.floor(i / 2);
         var minutes = i % 2 === 0 ? '00' : '30';

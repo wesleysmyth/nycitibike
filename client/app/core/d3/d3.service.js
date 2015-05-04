@@ -32,25 +32,29 @@
 
         //////////////////////////////////////////////////////////////
 
+        // onScriptLoad - loads the client in the browser 
         function onScriptLoad () {
-          // Load client in the browser
           $rootScope.$apply(function() { defer.resolve(window.d3); });
         }
 
+        // d3 - returns promisified defer statement
         function d3 () {
           return defer.promise;
         }
 
         function buildChart (d3, attrs, vm, stations, $window, chartType) {
-
-          // add the d3 instance to d3Services to allow for access in all controllers / directives
-          services.ddd = d3;
-          vm.showChart = false;
-	  vm.absUrl = $location.absUrl();
-
           var margin = parseInt(attrs.margin, 10) || 20;
           var barHeight = parseInt(attrs.barHeight, 10) || 20;
           var barPadding = parseInt(attrs.barPadding, 10) || 5;
+
+          // add the d3 instance to d3Services to allow for access in all controllers / directives
+          services.ddd = d3;
+
+          // hide any existing charts
+          vm.showChart = false;
+
+          // set the absolute url to the current absolute url (used for rect-url paths)
+          vm.absUrl = $location.absUrl();
 
           // Browser onresize event
           window.onresize = function() {
@@ -67,6 +71,12 @@
             vm.render(vm.data);
           });
 
+          /**
+           * vm.render - renders the chart and tables
+           * 
+           * @param {object} data - station data
+           * @return {object} schemas - schemas object contains all schema data
+           */ 
           vm.render = function(data) {
 
             // If we don't pass any data, return out of the element
@@ -89,9 +99,11 @@
                                   (chartWidth + margin.right)    + ',' + (chartHeight + margin.bottom) + ' ' +
                                   (-margin.left)                 + ',' + (chartHeight + margin.bottom));
 
+              // create the axes for the chart
               var axes = svg.append('g')
-		.attr('clip-path', 'url(' + vm.absUrl + '#axes-clip)');
+		            .attr('clip-path', 'url(' + vm.absUrl + '#axes-clip)');
 
+              // create the x axis labels based on height and width
               axes.append('g')
                 .attr('class', 'x axis')
                 .attr('transform', 'translate(0,' + chartHeight + ')')
@@ -107,6 +119,7 @@
                     }
                   })
 
+              // create the y axis labels based on height and width
               axes.append('g')
                 .attr('class', 'y axis')
                 .call(yAxis)
@@ -117,6 +130,7 @@
                   .style('text-anchor', 'end')
                   .text('Citibikes');
 
+              // create legend svg, append text and relevant data
               var legend = svg.append('g')
                 .attr('class', 'legend')
                 .attr('transform', 'translate(' + (chartWidth - legendWidth) + ', 0)');
@@ -160,7 +174,16 @@
                 .text('Average');
             }
 
+            /**
+             * drawPaths - draws the paths for the average, maximum and minimum bike data
+             * 
+             * @param {object} svg - svg object
+             * @param {object} data - station data
+             * @param {function} x - generate x axis data
+             * @param {function} y - generate y axis data
+             */
             function drawPaths (svg, data, x, y) {
+              
               var upperOuterArea = d3.svg.area()
                 .interpolate('basis')
                 .x (function (d) { return x(new Date(2015,0,1,parseInt(d.time.split(':')[0], 10), parseInt(d.time.split(':')[1],10))) || 1; })
@@ -195,38 +218,53 @@
               svg.append('path')
                 .attr('class', 'area upper outer')
                 .attr('d', upperOuterArea)
-		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
+		            .attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'area lower outer')
                 .attr('d', lowerOuterArea)
-		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
+		            .attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'area upper inner')
                 .attr('d', upperInnerArea)
-		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
+		            .attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'area lower inner')
                 .attr('d', lowerInnerArea)
-		.attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
+		            .attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
 
               svg.append('path')
                 .attr('class', 'median-line')
                 .attr('d', medianLine)
                 .attr('clip-path', 'url(' + vm.absUrl + '#rect-clip)');
     
-	    }
+	          }
 
+            /**
+             * startTransitions - draws the paths for the average, maximum and minimum bike data
+             * 
+             * @param {object} svg - svg object
+             * @param {number} chartWidth - width of current chart
+             * @param {number} chartHeight - height of current chart
+             * @param {object} rectClip - data to transition
+             * @param {function} x - generate x axis data
+             */
             function startTransitions (svg, chartWidth, chartHeight, rectClip, x) {
               rectClip.transition()
                 .duration(2200)
                 .attr('width', chartWidth);
 
+              // show the table associated with the chart
               vm.showChart = true;
             }
 
+            /**
+             * makeChart - builds the chart to display based on the input data
+             * 
+             * @param {object} data - station data
+             */
             function makeChart (data) {
               var svgWidth  = window.innerWidth - 60,
                   svgHeight = 500,
@@ -234,19 +272,23 @@
                   chartWidth  = svgWidth  - margin.left - margin.right,
                   chartHeight = svgHeight - margin.top  - margin.bottom;
 
+              // define scales for x and y axes
               var x = d3.time.scale().range([0, chartWidth])
-                        .domain(d3.extent(data, function (d) {// return data.indexOf(d)})),
+                        .domain(d3.extent(data, function (d) {
                           return new Date(2015,0,1,parseInt(d.time.split(':')[0], 10), parseInt(d.time.split(':')[1],10)) })),
                   y = d3.scale.linear().range([chartHeight, 0])
                         .domain([d3.min(data, function (d) { return d.minBikes/1.2; }), d3.max(data, function (d) { return d.maxBikes*1.2; })]);
 
-              var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(d3.time.minutes, 30)//.tickFormat(d3.time.format("%H:%M"))
+              // define tick sizes and orientation
+              var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(d3.time.minutes, 30)
                             .innerTickSize(-chartHeight).outerTickSize(0).tickPadding(0),
                   yAxis = d3.svg.axis().scale(y).orient('left')
                             .innerTickSize(-chartWidth).outerTickSize(0).tickPadding(10);
 
+              // choose which type of chart directive to show
               var selectedChart = chartType + '-chart';
 
+              // append the chart to the dom
               var svg = d3.select(selectedChart).append('svg')
                 .attr('width',  svgWidth)
                 .attr('height', svgHeight)
@@ -260,13 +302,13 @@
                   .attr('width', 0)
                   .attr('height', chartHeight);
 
+              // add the axes and legend, draw the paths, and transition the data along the paths
               addAxesAndLegend(svg, xAxis, yAxis, margin, chartWidth, chartHeight);
               drawPaths(svg, data, x, y);
               startTransitions(svg, chartWidth, chartHeight, rectClip, x);
             }
 
-            var parseDate  = d3.time.format('%Y-%m-%d').parse;
-
+            // create the chart based on the input data
             makeChart(vm.chartData);
 
           }
