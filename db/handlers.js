@@ -103,21 +103,22 @@
           if (err) {
             return console.error('Error finding station by stationId', err);
           }
-            
-          // grab the current minute object from the station and update the averages and count
-          var currentMinute = dbStation.hours[hour].minutes[minuteLibrary[minute]];
-          currentMinute.avgAvailableBikes = ((currentMinute.avgAvailableBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
-          currentMinute.avgAvailableDocks = ((currentMinute.avgAvailableDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
-          currentMinute.maxBikes = availableBikes > currentMinute.maxBikes ? availableBikes : currentMinute.maxBikes;
-          currentMinute.minBikes = currentMinute.minBikes === 0 ? availableBikes : availableBikes < currentMinute.minBikes ? availableBikes : currentMinute.minBikes;
-          currentMinute.count++;
+	  
+	  if (dbStation) {            
+            // grab the current minute object from the station and update the averages and count
+            var currentMinute = dbStation.hours[hour].minutes[minuteLibrary[minute]];
+            currentMinute.avgAvailableBikes = ((currentMinute.avgAvailableBikes * currentMinute.count) + availableBikes) / (currentMinute.count + 1);
+            currentMinute.avgAvailableDocks = ((currentMinute.avgAvailableDocks * currentMinute.count) + availableDocks) / (currentMinute.count + 1);
+            currentMinute.maxBikes = availableBikes > currentMinute.maxBikes ? availableBikes : currentMinute.maxBikes;
+            currentMinute.minBikes = currentMinute.minBikes === 0 ? availableBikes : availableBikes < currentMinute.minBikes ? availableBikes : currentMinute.minBikes;
+            currentMinute.count++;
 
-          // set the update object equal to the currentMinute object
-          var update = { $set: { minuteString: currentMinute } };
+            // set the update object equal to the currentMinute object
+            var update = { $set: { minuteString: currentMinute } };
           
-          // update and save the current station
-          services.updateAndSave(dbStation, query, update);
-
+            // update and save the current station
+            services.updateAndSave(dbStation, query, update);
+	  }
         });
 
       });

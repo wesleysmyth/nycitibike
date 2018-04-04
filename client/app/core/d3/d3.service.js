@@ -238,7 +238,7 @@
                         .domain(d3.extent(data, function (d) {// return data.indexOf(d)})),
                           return new Date(2015,0,1,parseInt(d.time.split(':')[0], 10), parseInt(d.time.split(':')[1],10)) })),
                   y = d3.scale.linear().range([chartHeight, 0])
-                        .domain([d3.min(data, function (d) { return d.minBikes/1.2; }), d3.max(data, function (d) { return d.maxBikes*1.2; })]);
+                        .domain([d3.min(data, function (d) { return d.minBikes/1.35; }), d3.max(data, function (d) { return d.maxBikes*1.35; })]);
 
               var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(d3.time.minutes, 30)//.tickFormat(d3.time.format("%H:%M"))
                             .innerTickSize(-chartHeight).outerTickSize(0).tickPadding(0),
